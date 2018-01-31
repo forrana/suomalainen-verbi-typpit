@@ -11,5 +11,8 @@
   },
   "scripts": {
     "start": "lite-server"
+  },
+  "dependencies": {
+    "mobile-drag-drop": "^2.3.0-rc.0"
   }
 }

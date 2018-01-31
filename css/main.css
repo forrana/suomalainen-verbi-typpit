@@ -79,3 +79,14 @@
   -webkit-flex: 1;
   -ms-flex: 1;
 }
+
+.alarm {
+  animation-duration: .5s;
+  animation-name: alarm;
+  animation-iteration-count: 2;
+}
+
+@keyframes alarm {
+    0%   {background-color: red;}
+    100% {background-color: #FEFE34;}
+}

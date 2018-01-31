@@ -1,3 +1,5 @@
+import AlarmManager from "./alarm.js"
+
 function draggability () {
   var dragged;
 
@@ -46,7 +48,10 @@ function draggability () {
 
       if ( event.target.classList.contains("dropzone") ) {
           event.target.style.background = "";
-          if ( event.target.getAttribute('word-type') != dragged.wordType ) return
+          if ( event.target.getAttribute('word-type') != dragged.wordType ) {
+            AlarmManager.starAlarm(event.target)
+            return
+          }
           dragged.parentNode.removeChild( dragged );
           event.target.appendChild( dragged );
       }
