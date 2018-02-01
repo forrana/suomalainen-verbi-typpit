@@ -24,21 +24,21 @@ let appendToZone = (zone, element) => {
 }
 
 let gerunds = [
-  'suggested',
+  'suggest',
   'mind',
-  'recommended',
-  'denied',
+  'recommend',
+  'deny',
   'consider'
 ]
 
 let infinitives = [
-  'agreed',
+  'agree'
   'appear',
-  'claims',
+  'claim',
   'hesitate',
-  'pretended',
-  'refused',
-  'happened'
+  'pretend',
+  'refuse',
+  'happen'
 ]
 
 let indifferent = [
