@@ -32,7 +32,7 @@ let gerunds = [
 ]
 
 let infinitives = [
-  'agree'
+  'agree',
   'appear',
   'claim',
   'hesitate',

@@ -17,12 +17,11 @@
   width: 60%;
 }
 
-.grouped .circle {
+.grouped section {
   padding: 6vh 0;
   align-items: center;
   border: 1px solid #343409;
-  border-radius: 50%;
-  flex-direction: column;
+  flex-wrap: nowrap;
   display: flex;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -33,40 +32,21 @@
   transition: background-color 0.5s ease;
 }
 
-.grouped .circle:nth-child(1) {
-  padding-right: 25%;
+.grouped section:nth-child(1) {
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='50px' width='120px'><text x='0' y='15' fill='red' font-size='20'>Infinitives</text></svg>");
 }
 
-.grouped .circle:nth-child(2) {
-  margin-left: -25%;
-  padding-left: 25%;
+.grouped section:nth-child(2) {
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='50px' width='120px'><text x='0' y='15' fill='red' font-size='20'>Both</text></svg>");
+}
+
+.grouped section:nth-child(3) {
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='50px' width='120px'><text x='0' y='15' fill='red' font-size='20'>Gerunds</text></svg>");
 }
 
-.indifferent {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-	border: 0;
-	left: 43vw;
-	top: 29vh;
-  height: 56vh;
-  width: 14vw;
-	color: #343409;
-	position: fixed;
-	text-align: center;
-	z-index: 10;
-	opacity: 0.9;
-  background-color: #FCCB1D;
-  border-radius: 50%;
-  transition: background-color 0.5s ease;
-  flex-direction: column;
-}
-
 .word {
+  font-size: x-large;
+  font-weight: bold;
   background-color: #FC9803;
   border: 1px solid #343409;
   color: #343409;
