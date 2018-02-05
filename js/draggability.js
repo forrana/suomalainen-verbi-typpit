@@ -1,7 +1,10 @@
 import AlarmManager from "./alarm.js"
+import Health from "./health.js"
+import main from "./app.js"
 
 function draggability () {
-  var dragged;
+  let dragged;
+  let health = new Health(3)
 
   document.addEventListener("drag", function( event ) {
 
@@ -66,7 +69,11 @@ function draggability () {
       if ( event.target.classList.contains("dropzone") ) {
           event.target.style.background = "";
           if ( event.target.getAttribute('word-type') != dragged.wordType ) {
-            AlarmManager.starAlarm(event.target)
+            AlarmManager.startAlarm(event.target)
+            console.log("health")
+            if(health.decreaseHealth()) return
+            console.log("health over")
+            main()
             return
           }
           dragged.parentNode.removeChild( dragged );

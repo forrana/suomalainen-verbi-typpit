@@ -1,7 +1,14 @@
 function main() {
+  initializeNodes()
   gerunds.map((gerund) => appendToZone('ungrouped', createSpan(gerund, 'gerund')))
   infinitives.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'infinitive')))
   indifferent.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'indifferent')))
+}
+
+function initializeNodes() {
+  document.getElementById("ungrouped").innerHTML = ""
+  let children = [ ...document.getElementById("grouped").childNodes ]
+  children.map((child) => child.innerHTML = "")
 }
 
 function getRandomInt(max) {
