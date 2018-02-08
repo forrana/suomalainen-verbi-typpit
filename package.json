@@ -13,6 +13,7 @@
     "start": "lite-server"
   },
   "dependencies": {
+    "compromise": "^11.3.0",
     "mobile-drag-drop": "^2.3.0-rc.0"
   }
 }

@@ -31,6 +31,9 @@ let appendToZone = (zone, element) => {
 }
 
 let gerunds = [
+  'postpon',
+  'resist',
+  'delay',
   'suggest',
   'mind',
   'recommend',
@@ -39,6 +42,8 @@ let gerunds = [
 ]
 
 let infinitives = [
+  'care',
+  'arrange',
   'agree',
   'appear',
   'claim',

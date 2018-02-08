@@ -1,10 +1,19 @@
 import AlarmManager from "./alarm.js"
 import Health from "./health.js"
 import main from "./app.js"
+import * as nlp from "../libs/compromise/builds/compromise.es6.min.js"
 
 function draggability () {
   let dragged;
   let health = new Health(3)
+  let randomVerbs = [
+    'do',
+    'be',
+    'think',
+    'ask',
+    'listen',
+    'go'
+  ]
 
   document.addEventListener("drag", function( event ) {
 
