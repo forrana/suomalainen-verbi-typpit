@@ -2,7 +2,7 @@ function main() {
   initializeNodes()
   gerunds.map((gerund) => appendToZone('ungrouped', createSpan(gerund, 'gerund')))
   infinitives.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'infinitive')))
-  indifferent.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'indifferent')))
+  indifferent.map((indifferent) => appendToZone('ungrouped', createSpan(indifferent, 'indifferent')))
 }
 
 function initializeNodes() {
