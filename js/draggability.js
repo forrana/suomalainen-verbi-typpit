@@ -1,19 +1,21 @@
 import AlarmManager from "./alarm.js"
 import Health from "./health.js"
 import main from "./app.js"
-import * as nlp from "../libs/compromise/builds/compromise.es6.min.js"
 
 function draggability () {
   let dragged;
   let health = new Health(3)
   let randomVerbs = [
-    'do',
-    'be',
-    'think',
-    'ask',
-    'listen',
-    'go'
+    'doing',
+    'thinking',
+    'asking',
+    'listening',
+    'going'
   ]
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 
   document.addEventListener("drag", function( event ) {
 
@@ -79,12 +81,15 @@ function draggability () {
           event.target.style.background = "";
           if ( event.target.getAttribute('word-type') != dragged.wordType ) {
             AlarmManager.startAlarm(event.target)
-            console.log("health")
             if(health.decreaseHealth()) return
-            console.log("health over")
             main()
             return
           }
+          let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length)]).verbs()
+          switch(dragged.wordType){
+            case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
+          }
+          dragged.innerHTML += ` ${verb.out('text')}`
           dragged.parentNode.removeChild( dragged );
           event.target.appendChild( dragged );
       }
