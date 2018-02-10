@@ -1,17 +1,9 @@
 import AlarmManager from "./alarm.js"
-import Health from "./health.js"
-import main from "./app.js"
+import Main from "./app.js"
 
 function draggability () {
   let dragged;
-  let health = new Health(3)
-  let randomVerbs = [
-    'doing',
-    'thinking',
-    'asking',
-    'listening',
-    'going'
-  ]
+  let main = new Main()
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -79,19 +71,12 @@ function draggability () {
 
       if ( event.target.classList.contains("dropzone") ) {
           event.target.style.background = "";
-          if ( event.target.getAttribute('word-type') != dragged.wordType ) {
+          if (main.onDropEvent(event, dragged)) {
+            dragged.parentNode.removeChild( dragged )
+            event.target.appendChild( dragged )
+          } else {
             AlarmManager.startAlarm(event.target)
-            if(health.decreaseHealth()) return
-            main()
-            return
           }
-          let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length)]).verbs()
-          switch(dragged.wordType){
-            case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
-          }
-          dragged.innerHTML += ` ${verb.out('text')}`
-          dragged.parentNode.removeChild( dragged );
-          event.target.appendChild( dragged );
       }
 
   }, false);

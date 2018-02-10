@@ -1,8 +1,31 @@
-function main() {
-  initializeNodes()
-  gerunds.map((gerund) => appendToZone('ungrouped', createSpan(gerund, 'gerund')))
-  infinitives.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'infinitive')))
-  indifferent.map((indifferent) => appendToZone('ungrouped', createSpan(indifferent, 'indifferent')))
+import Health from "./health.js"
+
+class Main {
+  constructor() {
+    this.currentHealth = new Health(3)
+    this.init()
+  }
+
+  init(){
+    initializeNodes()
+    gerunds.map((gerund) => appendToZone('ungrouped', createSpan(gerund, 'gerund')))
+    infinitives.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'infinitive')))
+    indifferent.map((indifferent) => appendToZone('ungrouped', createSpan(indifferent, 'indifferent')))
+  }
+
+  onDropEvent(event, dragged) {
+    if ( event.target.getAttribute('word-type') != dragged.wordType ) {
+      if(this.currentHealth.decreaseHealth()) return
+      this.init()
+      return false
+    }
+    let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length - 1)]).verbs()
+    switch(dragged.wordType){
+      case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
+    }
+    dragged.innerHTML += ` ${verb.out('text')}`
+    return true
+  }
 }
 
 function initializeNodes() {
@@ -61,5 +84,32 @@ let indifferent = [
   'forget'
 ]
 
+let randomVerbs = [
+  'having',
+  'doing',
+  'saying',
+  'going',
+  'getting',
+  'getting',
+  'making',
+  'knowing',
+  'thinking',
+  'taking',
+  'seeing',
+  'coming',
+  'wanting',
+  'using',
+  'finding',
+  'giving',
+  'telling',
+  'working',
+  'calling',
+  'trying',
+  'asking',
+  'needing',
+  'feeling',
+  'becoming',
+  'leaving'
+]
 
-export default main
+export default Main
