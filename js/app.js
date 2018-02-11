@@ -20,10 +20,11 @@ class Main {
       return false
     }
     let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length - 1)]).verbs()
+    let name = names[getRandomInt(names.length - 1)]
     switch(dragged.wordType){
       case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
     }
-    dragged.innerHTML += ` ${verb.out('text')}`
+    dragged.innerHTML = `${name} ${dragged.innerHTML}s ${verb.out('text')}`
     return true
   }
 }
@@ -90,18 +91,13 @@ let randomVerbs = [
   'saying',
   'going',
   'getting',
-  'getting',
-  'making',
-  'knowing',
   'thinking',
   'taking',
   'seeing',
   'coming',
-  'wanting',
   'using',
   'finding',
   'giving',
-  'telling',
   'working',
   'calling',
   'trying',
@@ -110,6 +106,27 @@ let randomVerbs = [
   'feeling',
   'becoming',
   'leaving'
+]
+
+let names = [
+  'Amelia',
+  'Olivia',
+  'Isla',
+  'Emily',
+  'Poppy',
+  'Ava',
+  'Isabella',
+  'Jessica',
+  'Lily',
+  'Jack',
+  'Harry',
+  'Jacob',
+  'Charlie',
+  'Thomas',
+  'George',
+  'Oscar',
+  'James',
+  'William'
 ]
 
 export default Main
