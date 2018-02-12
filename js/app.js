@@ -21,10 +21,11 @@ class Main {
     }
     let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length - 1)]).verbs()
     let name = names[getRandomInt(names.length - 1)]
+    dragged.innerHTML += 's'
     switch(dragged.wordType){
       case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
     }
-    dragged.innerHTML = `${name} ${dragged.innerHTML}s ${verb.out('text')}`
+    dragged.innerHTML = `${name} ${dragged.innerHTML} ${verb.out('text')}`
     return true
   }
 }
