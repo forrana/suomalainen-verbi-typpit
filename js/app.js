@@ -21,7 +21,7 @@ class Main {
     }
     let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length - 1)]).verbs()
     let name = names[getRandomInt(names.length - 1)]
-    dragged.innerHTML += 's'
+    dragged.innerHTML = nlp(`${dragged.innerHTML}`).verbs().toPresentTense().out() || `${dragged.innerHTML}s`
     switch(dragged.wordType){
       case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
     }
@@ -56,7 +56,7 @@ let appendToZone = (zone, element) => {
 }
 
 let gerunds = [
-  'postpon',
+  'postpone',
   'resist',
   'delay',
   'suggest',

@@ -16,7 +16,6 @@ var dataCacheName = 'GrndVsInf-v1';
 var cacheName = 'GrndVsInf-final-1';
 var filesToCache = [
   'index.html',
-  'js/app.js',
   'js/alarm.js',
   'js/draggability.js',
   'js/health.js',
