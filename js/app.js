@@ -1,8 +1,8 @@
 import Health from "./health.js"
 const TOTALWORDS = 10
+let Level = 1
 
 class Main {
-
   constructor() {
     this.currentHealth = new Health(3)
     this.init()
@@ -35,25 +35,32 @@ class Main {
 
 function  mixWords() {
   let currentVerbCount = TOTALWORDS
+  let randomVerbs = []
   while(currentVerbCount > 0) {
     let group = getRandomInt(3)
     let verb = ""
+    let appendParams = []
     switch (group) {
       case 0:
         verb = gerunds[getRandomInt(gerunds.length-1)]
-        appendToZone('ungrouped', createSpan(verb, 'gerund'))
+        appendParams = [verb, 'gerund']
         break;
       case 1:
         verb = infinitives[getRandomInt(infinitives.length-1)]
-        appendToZone('ungrouped', createSpan(verb, 'infinitive'))
+        appendParams = [verb, 'infinitive']
         break;
       case 2:
         verb = indifferent[getRandomInt(indifferent.length-1)]
-        appendToZone('ungrouped', createSpan(verb, 'indifferent'))
+        appendParams = [verb, 'indifferent']
         break;
     }
-    currentVerbCount--
+      if( !randomVerbs.find( (element) => element[0] == appendParams[0] ) ) {
+        randomVerbs.push(appendParams)
+        currentVerbCount--
+      }
   }
+  randomVerbs.map( (randomVerb) => appendToZone('ungrouped', createSpan(...randomVerb)))
+
 }
 
 
