@@ -1,6 +1,8 @@
 import Health from "./health.js"
+const TOTALWORDS = 10
 
 class Main {
+
   constructor() {
     this.currentHealth = new Health(3)
     this.init()
@@ -8,9 +10,10 @@ class Main {
 
   init(){
     initializeNodes()
-    gerunds.map((gerund) => appendToZone('ungrouped', createSpan(gerund, 'gerund')))
-    infinitives.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'infinitive')))
-    indifferent.map((indifferent) => appendToZone('ungrouped', createSpan(indifferent, 'indifferent')))
+    // gerunds.map((gerund) => appendToZone('ungrouped', createSpan(gerund, 'gerund')))
+    // infinitives.map((infinitive) => appendToZone('ungrouped', createSpan(infinitive, 'infinitive')))
+    // indifferent.map((indifferent) => appendToZone('ungrouped', createSpan(indifferent, 'indifferent')))
+    mixWords()
   }
 
   onDropEvent(event, dragged) {
@@ -29,6 +32,30 @@ class Main {
     return true
   }
 }
+
+function  mixWords() {
+  let currentVerbCount = TOTALWORDS
+  while(currentVerbCount > 0) {
+    let group = getRandomInt(3)
+    let verb = ""
+    switch (group) {
+      case 0:
+        verb = gerunds[getRandomInt(gerunds.length-1)]
+        appendToZone('ungrouped', createSpan(verb, 'gerund'))
+        break;
+      case 1:
+        verb = infinitives[getRandomInt(infinitives.length-1)]
+        appendToZone('ungrouped', createSpan(verb, 'infinitive'))
+        break;
+      case 2:
+        verb = indifferent[getRandomInt(indifferent.length-1)]
+        appendToZone('ungrouped', createSpan(verb, 'indifferent'))
+        break;
+    }
+    currentVerbCount--
+  }
+}
+
 
 function initializeNodes() {
   document.getElementById("ungrouped").innerHTML = ""
