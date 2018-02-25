@@ -1,35 +1,5 @@
 import Health from "./health.js"
-
-let gerunds = [
-  'postpone',
-  'resist',
-  'delay',
-  'suggest',
-  'mind',
-  'recommend',
-  'deny',
-  'consider'
-]
-
-let infinitives = [
-  'care',
-  'arrange',
-  'agree',
-  'appear',
-  'claim',
-  'hesitate',
-  'pretend',
-  'refuse',
-  'happen'
-]
-
-let indifferent = [
-  'try',
-  'remember',
-  'stop',
-  'regret',
-  'forget'
-]
+import { gerunds, infinitives, indifferent, randomVerbs, names } from "./constants.js"
 
 const TOTALLEVELS = 3
 const TOTALWORDS = Math.round((gerunds.length + infinitives.length + indifferent.length) / TOTALLEVELS)
@@ -177,49 +147,4 @@ let createSpan = (text, type) => {
 let appendToZone = (zone, element) => {
   document.getElementById(zone).appendChild(element)
 }
-
-let randomVerbs = [
-  'having',
-  'doing',
-  'saying',
-  'going',
-  'getting',
-  'thinking',
-  'taking',
-  'seeing',
-  'coming',
-  'using',
-  'finding',
-  'giving',
-  'working',
-  'calling',
-  'trying',
-  'asking',
-  'needing',
-  'feeling',
-  'becoming',
-  'leaving'
-]
-
-let names = [
-  'Amelia',
-  'Olivia',
-  'Isla',
-  'Emily',
-  'Poppy',
-  'Ava',
-  'Isabella',
-  'Jessica',
-  'Lily',
-  'Jack',
-  'Harry',
-  'Jacob',
-  'Charlie',
-  'Thomas',
-  'George',
-  'Oscar',
-  'James',
-  'William'
-]
-
 export default Main
