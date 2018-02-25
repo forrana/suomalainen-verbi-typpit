@@ -19,6 +19,15 @@
         <script src="libs/mobile-drag-drop/scroll-behaviour.min.js" defer></script>
         <script src="libs/compromise/builds/compromise.es6.min.js" defer></script>
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114649873-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-114649873-1');
+        </script>
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -49,12 +58,5 @@
           </section>
         </section>
         <script src="js/index.js" type="module" defer></script>
-
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     </body>
 </html>
