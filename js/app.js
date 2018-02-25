@@ -1,4 +1,5 @@
 import Health from "./health.js"
+import GuessedWords from "./guessed.js"
 import { gerunds, infinitives, indifferent, randomVerbs, names } from "./constants.js"
 
 const TOTALLEVELS = 3
@@ -52,6 +53,7 @@ class Main {
     this.currentHealth = new Health(3)
     this.init(INITLEVEL)
     this.levelingSystem = new LevelingSystem()
+    this.guessedWordsArea = new GuessedWords()
   }
 
   init(level){
@@ -68,6 +70,7 @@ class Main {
     }
     let verb = nlp(randomVerbs[getRandomInt(randomVerbs.length - 1)]).verbs()
     let name = names[getRandomInt(names.length - 1)]
+    this.guessedWordsArea.guessedWords = dragged.innerHTML
     dragged.innerHTML = nlp(`${dragged.innerHTML}`).verbs().toPresentTense().out() || `${dragged.innerHTML}s`
     switch(dragged.wordType){
       case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
@@ -119,9 +122,7 @@ function  mixWords(level) {
   }
   console.log(randomVerbs)
   randomVerbs.map( (randomVerb) => appendToZone('ungrouped', createSpan(...randomVerb)))
-
 }
-
 
 function initializeNodes() {
   document.getElementById("ungrouped").innerHTML = ""
