@@ -1,58 +1,15 @@
 import Health from "./health.js"
 import GuessedWords from "./guessed.js"
 import { gerunds, infinitives, indifferent, randomVerbs, names } from "./constants.js"
+import LevelingSystem, { INITLEVEL, TOTALLEVELS } from "./leveling-system.js"
 
-const TOTALLEVELS = 3
 const TOTALWORDS = Math.round((gerunds.length + infinitives.length + indifferent.length) / TOTALLEVELS)
-const INITLEVEL = 1
 
-class LevelingSystem {
-  constructor() {
-    this.init()
-  }
-
-  init(){
-    this.level = INITLEVEL
-    this.guessedWords = 0
-    this.printCurrentLevel()
-  }
-
-  printCurrentLevel() {
-    let raundElement = document.getElementById('raund')
-    raundElement.innerHTML = `Level: ${this.level}`
-    raundElement.style.color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
-  }
-
-  get level() {
-    return this.currentLevel
-  }
-
-  set level(level) {
-    this.currentLevel = level
-  }
-
-  addProgress() {
-    this.guessedWords++
-    console.log(this.guessedWords)
-    console.log(this.level)
-    if(this.guessedWords == TOTALWORDS) {
-      this.guessedWords = 0
-      this.level++
-      if(this.level > TOTALLEVELS) {
-        this.level = INITLEVEL
-      }
-      this.printCurrentLevel()
-      return true
-    }
-    return false
-  }
-}
-
-class Main {
+export default class Main {
   constructor() {
     this.currentHealth = new Health(3)
     this.init(INITLEVEL)
-    this.levelingSystem = new LevelingSystem()
+    this.levelingSystem = new LevelingSystem(TOTALWORDS)
     this.guessedWordsArea = new GuessedWords(gerunds, infinitives, indifferent)
   }
 
@@ -148,4 +105,3 @@ let createSpan = (text, type) => {
 let appendToZone = (zone, element) => {
   document.getElementById(zone).appendChild(element)
 }
-export default Main
