@@ -53,7 +53,7 @@ class Main {
     this.currentHealth = new Health(3)
     this.init(INITLEVEL)
     this.levelingSystem = new LevelingSystem()
-    this.guessedWordsArea = new GuessedWords()
+    this.guessedWordsArea = new GuessedWords(gerunds, infinitives, indifferent)
   }
 
   init(level){
