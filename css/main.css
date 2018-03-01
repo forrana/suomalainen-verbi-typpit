@@ -2,6 +2,10 @@ body {
   font-size: 1em
 }
 
+h1, h2 {
+  color: #FC9803;
+}
+
 .wrapper {
   display: grid;
   grid-row-gap: 1vh;
