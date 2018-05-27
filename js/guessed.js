@@ -26,9 +26,11 @@ export default class GuessedWords {
   }
 
   createWordElement(text) {
+    let score = 0.1 + 0.1*text.score
+    score = score > 0 ? score : 0.1
     let span = document.createElement('span')
-    span.innerHTML = text
-    span.style.opacity = 0.1
+    span.innerHTML = text.name
+    span.style.opacity = score
     span.classList.add('guessed-word')
     return span
   }

@@ -1,35 +1,40 @@
 import { INITLEVEL, TOTALLEVELS } from "./leveling-system.js"
 
-export const gerunds = [
-  'postpone',
-  'resist',
-  'delay',
-  'suggest',
-  'mind',
-  'recommend',
-  'deny',
-  'consider'
-]
-
-export const infinitives = [
-  'care',
-  'arrange',
-  'agree',
-  'appear',
-  'claim',
-  'hesitate',
-  'pretend',
-  'refuse',
-  'happen'
-]
-
-export const indifferent = [
-  'try',
-  'remember',
-  'stop',
-  'regret',
-  'forget'
-]
+export const verbs = {
+  gerunds: [
+    'postpone',
+    'resist',
+    'delay',
+    'suggest',
+    'mind',
+    'recommend',
+    'deny',
+    'consider',
+    'risk',
+    'encourage someone'
+  ],
+  infinitives: [
+    'care',
+    'arrange',
+    'agree',
+    'appear',
+    'claim',
+    'hesitate',
+    'pretend',
+    'refuse',
+    'happen',
+    'learn',
+    'encourage',
+    'yearn'
+  ],
+  indifferents: [
+    'try',
+    'remember',
+    'stop',
+    'regret',
+    'forget'
+  ]
+}
 
 export const randomVerbs = [
   'having',
@@ -75,4 +80,4 @@ export const names = [
   'William'
 ]
 
-export const TOTALWORDS = Math.round((gerunds.length + infinitives.length + indifferent.length) / TOTALLEVELS)
+export const TOTALWORDS = Math.round((verbs.gerunds.length + verbs.infinitives.length + verbs.indifferents.length) / TOTALLEVELS)

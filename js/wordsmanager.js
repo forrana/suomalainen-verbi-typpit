@@ -1,8 +1,47 @@
-import { gerunds, infinitives, indifferent, randomVerbs, names, TOTALWORDS } from "./constants.js"
+import { verbs, randomVerbs, names, TOTALWORDS } from "./constants.js"
 
 export default class WordsManager {
   constructor(level) {
+    this.loadGroupsScoring()
     this.mixWords(level)
+  }
+
+  loadGroupsScoring(){
+    ["gerunds", "infinitives", "indifferents"].forEach(this.loadGroupScoring.bind(this))
+  }
+
+  loadGroupScoring(groupName){
+    let loadedVerbs = []
+    let loadFunc
+    switch(groupName) {
+      case "gerunds":
+          loadedVerbs = JSON.parse(localStorage.getItem("gerunds")) || []
+          loadFunc = this.loadOrInitVerb(loadedVerbs)
+          verbs.gerunds = verbs.gerunds.map(loadFunc).sort((a,b) => a.score + b.score)
+          localStorage.setItem("gerunds", JSON.stringify(verbs.gerunds))
+          break
+      case "infinitives":
+          loadedVerbs = JSON.parse(localStorage.getItem("infinitives")) || []
+          loadFunc = this.loadOrInitVerb(loadedVerbs)
+          verbs.infinitives = verbs.infinitives.map(loadFunc).sort((a,b) => a.score + b.score)
+          localStorage.setItem("infinitives", JSON.stringify(verbs.infinitives))
+          break
+      case "indifferents":
+          loadedVerbs = JSON.parse(localStorage.getItem("indifferents")) || []
+          loadFunc = this.loadOrInitVerb(loadedVerbs)
+          verbs.indifferents = verbs.indifferents.map(loadFunc).sort((a,b) => a.score + b.score)
+          localStorage.setItem("indifferents", JSON.stringify(verbs.indifferents))
+          break
+    }
+  }
+
+  loadOrInitVerb(verbs) {
+    return (verbName) => {
+      let verb = verbs.find(verb => verb.name == verbName)
+      if(verb) {
+        return verb
+      } else return {name: `${verbName}`, score: 0}
+    }
   }
 
   mixWords(level) {
@@ -15,16 +54,16 @@ export default class WordsManager {
       let appendParams = []
       switch (group) {
         case 0:
-          verb = this.getCurrentLevelRandomVerbs(gerunds, level)
-          appendParams = [verb, 'gerund']
+          verb = this.getCurrentLevelRandomVerbs(verbs.gerunds, level)
+          appendParams = [verb, 'gerunds']
           break;
         case 1:
-          verb = this.getCurrentLevelRandomVerbs(infinitives, level)
-          appendParams = [verb, 'infinitive']
+          verb = this.getCurrentLevelRandomVerbs(verbs.infinitives, level)
+          appendParams = [verb, 'infinitives']
           break;
         case 2:
-          verb = this.getCurrentLevelRandomVerbs(indifferent, level)
-          appendParams = [verb, 'indifferent']
+          verb = this.getCurrentLevelRandomVerbs(verbs.indifferents, level)
+          appendParams = [verb, 'indifferents']
           break;
       }
         if( !randomVerbs.find( (element) => element[0] == appendParams[0] ) ) {
@@ -46,7 +85,7 @@ export default class WordsManager {
 
 function createSpan(text, type){
   let span = document.createElement('span')
-  span.innerHTML = text
+  span.innerHTML = text.name
   span.draggable = true
   span.wordType = type
   span.classList.add('word')
