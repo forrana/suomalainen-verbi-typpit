@@ -14,6 +14,8 @@ export const verbs = {
     'encourage someone'
   ],
   infinitives: [
+    'get',
+    'decide',
     'care',
     'arrange',
     'agree',

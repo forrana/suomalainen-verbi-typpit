@@ -34,7 +34,7 @@ export default class Main {
     let name = names[getRandomInt(names.length - 1)]
     this.guessedWordsArea.guessedWords = dragged.innerHTML
     dragged.innerHTML = nlp(`${dragged.innerHTML}`).verbs().toPresentTense().out() || `${dragged.innerHTML}s`
-    switch(dragged.wordType){
+    switch(dragged.wordType) {
       case "infinitives": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
     }
     dragged.innerHTML = `${name} ${dragged.innerHTML} ${verb.out('text')}`
