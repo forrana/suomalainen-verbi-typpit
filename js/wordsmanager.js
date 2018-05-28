@@ -6,41 +6,48 @@ export default class WordsManager {
     this.mixWords(level)
   }
 
-  loadGroupsScoring(){
+  loadGroupsScoring() {
     ["gerunds", "infinitives", "indifferents"].forEach(this.loadGroupScoring.bind(this))
   }
 
-  loadGroupScoring(groupName){
+  loadGroupScoring(groupName) {
     let loadedVerbs = []
     let loadFunc
     switch(groupName) {
       case "gerunds":
           loadedVerbs = JSON.parse(localStorage.getItem("gerunds")) || []
           loadFunc = this.loadOrInitVerb(loadedVerbs)
-          verbs.gerunds = verbs.gerunds.map(loadFunc).sort((a,b) => a.score + b.score)
+          verbs.gerunds = verbs.gerunds.map(loadFunc).sort((a,b) => a.score - b.score)
           localStorage.setItem("gerunds", JSON.stringify(verbs.gerunds))
           break
       case "infinitives":
           loadedVerbs = JSON.parse(localStorage.getItem("infinitives")) || []
           loadFunc = this.loadOrInitVerb(loadedVerbs)
-          verbs.infinitives = verbs.infinitives.map(loadFunc).sort((a,b) => a.score + b.score)
+          verbs.infinitives = verbs.infinitives.map(loadFunc).sort((a,b) => a.score - b.score)
           localStorage.setItem("infinitives", JSON.stringify(verbs.infinitives))
           break
       case "indifferents":
           loadedVerbs = JSON.parse(localStorage.getItem("indifferents")) || []
           loadFunc = this.loadOrInitVerb(loadedVerbs)
-          verbs.indifferents = verbs.indifferents.map(loadFunc).sort((a,b) => a.score + b.score)
+          verbs.indifferents = verbs.indifferents.map(loadFunc).sort((a,b) => a.score - b.score)
           localStorage.setItem("indifferents", JSON.stringify(verbs.indifferents))
           break
     }
   }
 
   loadOrInitVerb(verbs) {
-    return (verbName) => {
-      let verb = verbs.find(verb => verb.name == verbName)
-      if(verb) {
-        return verb
-      } else return {name: `${verbName}`, score: 0}
+    return (checkingVerb) => {
+      if(typeof checkingVerb == "string") {
+        let verb = verbs.find(verb => verb.name == checkingVerb)
+        if(verb) {
+          return verb
+        } else return {name: `${checkingVerb}`, score: 0}
+      } else {
+        let verb = verbs.find(verb => verb.name == checkingVerb.name)
+        if(verb) {
+          return verb
+        } else return {name: `${checkingVerb.name}`, score: 0}
+      }
     }
   }
 

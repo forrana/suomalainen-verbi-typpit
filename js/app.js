@@ -35,7 +35,7 @@ export default class Main {
     this.guessedWordsArea.guessedWords = dragged.innerHTML
     dragged.innerHTML = nlp(`${dragged.innerHTML}`).verbs().toPresentTense().out() || `${dragged.innerHTML}s`
     switch(dragged.wordType){
-      case "infinitive": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
+      case "infinitives": verb = verb.toInfinitive(); dragged.innerHTML += ' to'
     }
     dragged.innerHTML = `${name} ${dragged.innerHTML} ${verb.out('text')}`
     if(this.levelingSystem.addProgress()) {
