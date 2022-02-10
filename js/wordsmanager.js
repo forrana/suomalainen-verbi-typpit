@@ -1,4 +1,4 @@
-import { verbs, randomVerbs, names, TOTALWORDS } from "./constants.js"
+import { verbs, TOTALWORDS } from "./constants.js"
 
 export default class WordsManager {
   constructor(level) {
@@ -7,31 +7,49 @@ export default class WordsManager {
   }
 
   loadGroupsScoring() {
-    ["gerunds", "infinitives", "indifferents"].forEach(this.loadGroupScoring.bind(this))
+    ["vt1", "vt2", "vt3", "vt4", "vt5", "vt6"].forEach(this.loadGroupScoring.bind(this))
   }
 
   loadGroupScoring(groupName) {
     let loadedVerbs = []
     let loadFunc
     switch(groupName) {
-      case "gerunds":
-          loadedVerbs = JSON.parse(localStorage.getItem("gerunds")) || []
+      case "vt1":
+          loadedVerbs = JSON.parse(localStorage.getItem("vt1")) || []
           loadFunc = this.loadOrInitVerb(loadedVerbs)
-          verbs.gerunds = verbs.gerunds.map(loadFunc).sort((a,b) => a.score - b.score)
-          localStorage.setItem("gerunds", JSON.stringify(verbs.gerunds))
+          verbs.vt1 = verbs.vt1.map(loadFunc).sort((a,b) => a.score - b.score)
+          localStorage.setItem("vt1", JSON.stringify(verbs.vt1))
           break
-      case "infinitives":
-          loadedVerbs = JSON.parse(localStorage.getItem("infinitives")) || []
+      case "vt2":
+          loadedVerbs = JSON.parse(localStorage.getItem("vt2")) || []
           loadFunc = this.loadOrInitVerb(loadedVerbs)
-          verbs.infinitives = verbs.infinitives.map(loadFunc).sort((a,b) => a.score - b.score)
-          localStorage.setItem("infinitives", JSON.stringify(verbs.infinitives))
+          verbs.vt2 = verbs.vt2.map(loadFunc).sort((a,b) => a.score - b.score)
+          localStorage.setItem("vt2", JSON.stringify(verbs.vt2))
           break
-      case "indifferents":
-          loadedVerbs = JSON.parse(localStorage.getItem("indifferents")) || []
+      case "vt3":
+          loadedVerbs = JSON.parse(localStorage.getItem("vt3")) || []
           loadFunc = this.loadOrInitVerb(loadedVerbs)
-          verbs.indifferents = verbs.indifferents.map(loadFunc).sort((a,b) => a.score - b.score)
-          localStorage.setItem("indifferents", JSON.stringify(verbs.indifferents))
+          verbs.vt3 = verbs.vt3.map(loadFunc).sort((a,b) => a.score - b.score)
+          localStorage.setItem("vt3", JSON.stringify(verbs.vt3))
           break
+      case "vt4":
+        loadedVerbs = JSON.parse(localStorage.getItem("vt4")) || []
+        loadFunc = this.loadOrInitVerb(loadedVerbs)
+        verbs.vt4 = verbs.vt4.map(loadFunc).sort((a,b) => a.score - b.score)
+        localStorage.setItem("vt4", JSON.stringify(verbs.vt4))
+        break
+      case "vt5":
+        loadedVerbs = JSON.parse(localStorage.getItem("vt5")) || []
+        loadFunc = this.loadOrInitVerb(loadedVerbs)
+        verbs.vt5 = verbs.vt5.map(loadFunc).sort((a,b) => a.score - b.score)
+        localStorage.setItem("vt5", JSON.stringify(verbs.vt5))
+        break
+      case "vt6":
+        loadedVerbs = JSON.parse(localStorage.getItem("vt6")) || []
+        loadFunc = this.loadOrInitVerb(loadedVerbs)
+        verbs.vt6 = verbs.vt6.map(loadFunc).sort((a,b) => a.score - b.score)
+        localStorage.setItem("vt6", JSON.stringify(verbs.vt6))
+        break
     }
   }
 
@@ -61,16 +79,28 @@ export default class WordsManager {
       let appendParams = []
       switch (group) {
         case 0:
-          verb = this.getCurrentLevelRandomVerbs(verbs.gerunds, level)
-          appendParams = [verb, 'gerunds']
+          verb = this.getCurrentLevelRandomVerbs(verbs.vt1, level)
+          appendParams = [verb, 'vt1']
           break;
         case 1:
-          verb = this.getCurrentLevelRandomVerbs(verbs.infinitives, level)
-          appendParams = [verb, 'infinitives']
+          verb = this.getCurrentLevelRandomVerbs(verbs.vt2, level)
+          appendParams = [verb, 'vt2']
           break;
         case 2:
-          verb = this.getCurrentLevelRandomVerbs(verbs.indifferents, level)
-          appendParams = [verb, 'indifferents']
+          verb = this.getCurrentLevelRandomVerbs(verbs.vt3, level)
+          appendParams = [verb, 'vt3']
+          break;
+        case 3:
+          verb = this.getCurrentLevelRandomVerbs(verbs.vt4, level)
+          appendParams = [verb, 'vt4']
+          break;
+        case 4:
+          verb = this.getCurrentLevelRandomVerbs(verbs.vt5, level)
+          appendParams = [verb, 'vt5']
+          break;
+        case 5:
+          verb = this.getCurrentLevelRandomVerbs(verbs.vt6, level)
+          appendParams = [verb, 'vt6']
           break;
       }
         if( !randomVerbs.find( (element) => element[0] == appendParams[0] ) ) {
