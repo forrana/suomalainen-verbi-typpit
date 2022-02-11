@@ -74,7 +74,7 @@ export default class WordsManager {
     let randomVerbs = []
     for( let i = 0; i < TOTALWORDS*100; i++ ) {
       if(currentVerbCount === 0) break
-      let group = getRandomInt(3)
+      let group = getRandomInt(6)
       let verb = ""
       let appendParams = []
       switch (group) {
